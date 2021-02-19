@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/IBaHqRqSQ86LyCqYcsTV0jGwrlKlg9NFsDDl/qrO7zhepmaR0L/+7W4j9lGhPZe0NOi+Zz9yu/WtAlRG9S1/A==",
+  "success": true,
+  "projectFilePath": "D:\\workspace\\ReportRegister\\ReportRegister\\ReportRegister.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\g12pa\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
