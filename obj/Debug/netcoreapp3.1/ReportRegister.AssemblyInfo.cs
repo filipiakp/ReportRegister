@@ -11,7 +11,8 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("a1945875-f9b0-4b97-9551-2ca859695c28")]
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("077c0064-1c64-43f1-8889-12fbb14040ae")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportRegister")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

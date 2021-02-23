@@ -2,13 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>a1945875-f9b0-4b97-9551-2ca859695c28</UserSecretsId>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>077c0064-1c64-43f1-8889-12fbb14040ae</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
 </Project>

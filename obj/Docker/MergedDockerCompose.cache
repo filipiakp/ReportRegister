@@ -1,0 +1,31 @@
+services:
+  reportregister_app:
+    build:
+      context: D:\workspace\ReportRegister\ReportRegister
+      dockerfile: Dockerfile
+    container_name: reportregister_app
+    depends_on:
+      reportregister_db:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      CUSTOMCONNSTR_DefaultConnection: Server=127.0.0.1;Database=ReportRegisterDB;User
+        ID=sa;Password=zaq1@WSX;TrustServerCertificate=True;MultipleActiveResultSets=true
+    image: reportregister
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\g12pa\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\g12pa\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  reportregister_db:
+    container_name: reportregister_db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: zaq1@WSX
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - published: 1433
+      target: 1433
+version: '3.4'

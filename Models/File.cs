@@ -8,8 +8,9 @@ namespace ReportRegister.Models
 {
     public class File
     {
-        [Key]
         public int Id { get; set; }
+        [Required]
+        [MaxLength(400)]
         public string Url { get; set; }
     }
 }
