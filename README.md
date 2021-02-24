@@ -5,14 +5,17 @@ Example docker-compose.yml file:
 version: '3.4'
 
 services:
-  reportregister:
-    container_name: reportregister
+  reportregister_app:
+    container_name: reportregister_app
     image: ${DOCKER_REGISTRY-}reportregister
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+    - "80:80"
+    - "443:443"
     environment:
-      CUSTOMCONNSTR_DefaultConnection: "Data Source=127.0.0.1;Initial Catalog=ReportRegisterDB;User ID=user;Password=password;TrustServerCertificate=True"
+      CUSTOMCONNSTR_DefaultConnection: "Data Source=reportregister_db;Initial Catalog=ReportRegisterDB;User ID=user;Password=password;TrustServerCertificate=True"
     depends_on:
       - reportregister_db
   reportregister_db:

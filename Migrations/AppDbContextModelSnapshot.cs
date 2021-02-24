@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ReportRegister.Data;
+using ReportRegister.Areas.Identity.Data;
 
 namespace ReportRegister.Migrations
 {
@@ -15,7 +15,7 @@ namespace ReportRegister.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
+                .HasAnnotation("ProductVersion", "3.1.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -222,13 +222,13 @@ namespace ReportRegister.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ReportId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(400)")
                         .HasMaxLength(400);
+
+                    b.Property<int?>("ReportId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

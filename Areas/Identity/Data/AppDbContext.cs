@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ReportRegister.Areas.Identity.Data;
 using ReportRegister.Models;
 
-namespace ReportRegister.Data
+namespace ReportRegister.Areas.Identity.Data
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -17,9 +16,9 @@ namespace ReportRegister.Data
         {
         }
 
-        DbSet<File> Files { get; set; }
-        DbSet<Report> Reports { get; set; }
-        DbSet<Reply> Replies { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Reply> Replies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

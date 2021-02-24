@@ -11,6 +11,10 @@ namespace ReportRegister.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(400)]
-        public string Url { get; set; }
+        public string Name { get; set; }
+        public override string ToString()
+        {
+            return Name.Substring(Name.IndexOf('_') + 1);
+        }
     }
 }

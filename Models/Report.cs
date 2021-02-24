@@ -1,4 +1,5 @@
-﻿using ReportRegister.Areas.Identity.Data;
+﻿using Microsoft.AspNetCore.Http;
+using ReportRegister.Areas.Identity.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,8 +19,8 @@ namespace ReportRegister.Models
         public string Description { get; set; }
         [Required]
         public ReportStatus Status { get; set; }
-        public List<File> Files { get; set; }
-        public List<Reply> Replies { get; set; }
+        public virtual List<File> Files { get; set; }
+        public virtual List<Reply> Replies { get; set; }
         public ApplicationUser Author { get; set; }
 
     }

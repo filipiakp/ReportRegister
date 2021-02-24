@@ -1,5 +1,14 @@
+<<<<<<< Updated upstream
 bin/**
 wwwroot/uploads/**
 connection-string.txt
 docker-compose.yml
 *.cache
+=======
+connection-string.txt
+docker-compose.yml
+.vs/**
+bin/**
+wwwroot/uploads/**
+*.cache
+>>>>>>> Stashed changes

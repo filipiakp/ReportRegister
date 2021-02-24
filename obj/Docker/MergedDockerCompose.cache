@@ -10,11 +10,15 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: https://+:443;http://+:80
-      CUSTOMCONNSTR_DefaultConnection: Server=127.0.0.1;Database=ReportRegisterDB;User
-        ID=sa;Password=zaq1@WSX;TrustServerCertificate=True;MultipleActiveResultSets=true
+      CUSTOMCONNSTR_DefaultConnection: Data Source=reportregister_db;Initial Catalog=ReportRegisterDB;Persist
+        Security Info=True;User ID=sa;Password=zaq1@WSX;MultipleActiveResultSets=True;TrustServerCertificate=True
     image: reportregister
     ports:
+    - published: 80
+      target: 80
     - target: 80
+    - published: 443
+      target: 443
     - target: 443
     volumes:
     - C:\Users\g12pa\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro

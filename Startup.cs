@@ -5,12 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ReportRegister.Areas.Identity.Data;
-using ReportRegister.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ReportRegister.Areas.Identity.Data;
 
 namespace ReportRegister
 {
@@ -27,15 +26,18 @@ namespace ReportRegister
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddDbContext<AppDbContext>(options =>
-            //        options.UseSqlServer(
-            //            Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("DefaultConnection")
+
+                    ));
 
 
-            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<AppDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

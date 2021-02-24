@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("077c0064-1c64-43f1-8889-12fbb14040ae")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("ReportRegister")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paweł Filipiak")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
