@@ -1,3 +1,31 @@
+# Report Register
+## How to build?
+Example docker-compose.yml file:
+```YAML
+version: '3.4'
+
+services:
+  reportregister:
+    container_name: reportregister
+    image: ${DOCKER_REGISTRY-}reportregister
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      CUSTOMCONNSTR_DefaultConnection: "Data Source=127.0.0.1;Initial Catalog=ReportRegisterDB;User ID=user;Password=password;TrustServerCertificate=True"
+    depends_on:
+      - reportregister_db
+  reportregister_db:
+    container_name: reportregister_db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - "1433:1433"
+    environment:
+      SA_PASSWORD: "password"
+      ACCEPT_EULA: "Y"
+	  
+```
+
 # Zadanie rekrutacyjne
 
 

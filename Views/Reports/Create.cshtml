@@ -1,0 +1,63 @@
+﻿@model ReportRegister.Models.ReportViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Report</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <label asp-for="Files" class="control-label custom-file-label"></label>
+                    <input asp-for="Files" type="file" multiple class="form-control custom-file-input" accept=".pdf, .jpg, .jpeg, image/jpeg, application/pdf" />
+                    <span asp-validation-for="Files" class="text-danger"></span>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $(".custom-file-input").on("change", function () {
+                var files = $(this)[0].files;
+                var label = "";
+                for (var i = 0; i < files.length-1;++i) {
+                    label += files[i].name + ", ";
+                    
+                }
+                label += files[files.length - 1].name;
+                $(".custom-file-label").html(label);
+
+            })
+
+        });
+    </script>
+}
