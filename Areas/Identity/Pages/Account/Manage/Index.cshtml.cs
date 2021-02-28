@@ -33,6 +33,10 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [MaxLength(50)]
+            public string FirstName { get; set; }
+            [MaxLength(90)]
+            public string LastName { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -47,6 +51,8 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 PhoneNumber = phoneNumber
             };
         }
@@ -77,13 +83,17 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            if (Input.FirstName != user.FirstName || 
+                Input.LastName != user.LastName ||
+                Input.PhoneNumber != user.PhoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
+                var updateUser = await _userManager.UpdateAsync(user);
+                if(!updateUser.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Unexpected error when trying to update user data.";
                     return RedirectToPage();
                 }
             }

@@ -67,20 +67,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(document).ready(function () {
-            $(".custom-file-input").on("change", function () {
-                var files = $(this)[0].files;
-                var label = "";
-                for (var i = 0; i < files.length-1;++i) {
-                    label += files[i].name + ", ";
-
-                }
-                label += files[files.length - 1].name;
-                $(".custom-file-label").html(label);
-
-            })
-
-        });
-    </script>
 }

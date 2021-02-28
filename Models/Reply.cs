@@ -11,7 +11,10 @@ namespace ReportRegister.Models
     {
         public long Id { get; set; }
         [MaxLength(4000)]
+        [Required]
         public string Content { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
         [Required]
         public ApplicationUser Author { get; set; }
     }

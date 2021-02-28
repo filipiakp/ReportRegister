@@ -39,7 +39,9 @@ namespace ReportRegister.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(maxLength: 90, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -201,7 +203,8 @@ namespace ReportRegister.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(maxLength: 4000, nullable: true),
+                    Content = table.Column<string>(maxLength: 4000, nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
                     AuthorId = table.Column<string>(nullable: false),
                     ReportId = table.Column<int>(nullable: true)
                 },

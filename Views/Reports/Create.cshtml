@@ -24,12 +24,14 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="overflow-auto border rounded" style="max-height:250px;min-height:50px;" id="loadedFiles"></div>
                 <div class="custom-file">
+
                     <label asp-for="Files" class="control-label custom-file-label"></label>
                     <input asp-for="Files" type="file" multiple class="form-control custom-file-input" accept=".pdf, .jpg, .jpeg, image/jpeg, application/pdf" />
                     <span asp-validation-for="Files" class="text-danger"></span>
                 </div>
-                
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -48,13 +50,27 @@
         $(document).ready(function () {
             $(".custom-file-input").on("change", function () {
                 var files = $(this)[0].files;
-                var label = "";
-                for (var i = 0; i < files.length-1;++i) {
-                    label += files[i].name + ", ";
+                $("#loadedFiles").html("");
+                var label = "<ul class='list-group list-group-flush'>";
+                var size = 0;
+                for (var i = 0; i < files.length - 1; ++i) {
+                    size += files[i].size;
+                    label += "<li class='list-group-item'>" + files[i].name + "</li>";
                     
                 }
-                label += files[files.length - 1].name;
-                $(".custom-file-label").html(label);
+                if (size > 20 * 1024 * 1024) {
+                    var Title = $("#Title")[0].value;
+                    var Description = $("#Description")[0].value;
+                    $("form")[0].reset();
+                    $("#Title")[0].value = Title;
+                    $("#Description")[0].value = Description;
+                    $(this).next()[0].innerText = "Too large files";
+                } else {
+                    label += "<li class='list-group-item'>" + files[files.length - 1].name + "</li></ul>";
+                    $(this).next()[0].innerText = "";
+                    $("#loadedFiles").html(label);
+                }
+                
 
             })
 

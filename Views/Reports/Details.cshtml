@@ -1,4 +1,7 @@
 ﻿@model ReportRegister.Models.Report
+@using Microsoft.AspNetCore.Identity
+@using ReportRegister.Areas.Identity.Data
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -55,6 +58,34 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @if (User.IsInRole(PredefinedRoles.Employee))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a asp-action="Delete" asp-route-id="item.Id">Delete</a>
+    }
     <a asp-action="Index">Back to List</a>
 </div>
+
+<h1 class="mt-5 mb-3">Replies</h1>
+@if (Model.Replies != null)
+    @foreach (var s in Model.Replies)
+    {
+        <div class="border rounded my-2">
+            <div class="p-3">@s.Content</div>
+            <div class="border-top bg-light p-1">
+                <i>@s.Date</i>&nbsp;-&nbsp;
+                @(s.Author.LastName.Length==0?
+                s.Author.UserName:s.Author.LastName+" "+s.Author.FirstName)
+            </div>
+        </div>
+    }
+
+<form asp-action="Reply" asp-route-id="@Model.Id" class="mt-5">
+    <div class="input-group">
+        <textarea name="Content" class="form-control" style="height:50px;"></textarea>
+
+        <div class="input-group-append">
+            <input type="submit" value="Reply" class="btn btn-primary" style="max-height:50px;" />
+        </div>
+    </div>
+</form>

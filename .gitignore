@@ -12,3 +12,5 @@ bin/**
 wwwroot/uploads/**
 *.cache
 >>>>>>> Stashed changes
+*.cache
+obj/Docker/MergedDockerCompose.cache
