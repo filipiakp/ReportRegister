@@ -16,5 +16,6 @@ namespace ReportRegister.Areas.Identity.Data
         [MaxLength(90)]
         [PersonalData]
         public string LastName { get; set; }
+        public bool EmailNotifications { get; set; }
     }
 }

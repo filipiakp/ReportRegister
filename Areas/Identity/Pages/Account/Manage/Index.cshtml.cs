@@ -34,12 +34,18 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [MaxLength(50)]
+            [Required]
             public string FirstName { get; set; }
+
             [MaxLength(90)]
+            [Required]
             public string LastName { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Email Notifications")]
+            public bool EmailNotifications { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -53,7 +59,8 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                EmailNotifications = user.EmailNotifications
             };
         }
 
@@ -82,14 +89,24 @@ namespace ReportRegister.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
+            if (Input.EmailNotifications == true && !user.EmailConfirmed)
+            {
+                StatusMessage = "You have to confirm your e-mail for notifications.";
+                await LoadAsync(user);
+                return Page();
+            }
+            
 
             if (Input.FirstName != user.FirstName || 
                 Input.LastName != user.LastName ||
-                Input.PhoneNumber != user.PhoneNumber)
+                Input.PhoneNumber != user.PhoneNumber ||
+                Input.EmailNotifications != user.EmailNotifications)
             {
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.EmailNotifications = Input.EmailNotifications;
+                
                 var updateUser = await _userManager.UpdateAsync(user);
                 if(!updateUser.Succeeded)
                 {

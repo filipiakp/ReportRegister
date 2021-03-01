@@ -78,8 +78,7 @@ namespace ReportRegister.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -94,6 +93,11 @@ namespace ReportRegister.Areas.Identity.Pages.Account
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
+                }
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError(string.Empty, "Verify your e-mail.");
+                    return Page();
                 }
                 else
                 {

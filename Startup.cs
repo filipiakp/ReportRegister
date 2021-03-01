@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ReportRegister.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ReportRegister.Areas.Identity;
 
 namespace ReportRegister
 {
@@ -34,9 +36,11 @@ namespace ReportRegister
                     ));
 
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -93,21 +97,37 @@ namespace ReportRegister
                 }
             }
 
-            var poweruser = new ApplicationUser
+            var employee1 = new ApplicationUser
             {
                 UserName = Configuration["employee1_email"],
                 Email = Configuration["employee1_email"],
+                EmailConfirmed = true//needed to login
+            };
+            var employee2 = new ApplicationUser
+            {
+                UserName = Configuration["employee2_email"],
+                Email = Configuration["employee2_email"],
                 EmailConfirmed = true
             };
-            string userPWD = Configuration["employee1_password"];
-            var _user = await UserManager.FindByEmailAsync(Configuration["employee1_email"]);
+            string employee1_password = Configuration["employee1_password"];
+            string employee2_password = Configuration["employee2_password"];
+            var em_1_user = await UserManager.FindByEmailAsync(Configuration["employee1_email"]);
+            var em_2_user = await UserManager.FindByEmailAsync(Configuration["employee2_email"]);
 
-            if (_user == null)
+            if (em_1_user == null)
             {
-                var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
-                if (createPowerUser.Succeeded)
+                var createEmployeeUser = await UserManager.CreateAsync(employee1, employee1_password);
+                if (createEmployeeUser.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(poweruser, PredefinedRoles.Employee);
+                    await UserManager.AddToRoleAsync(employee1, PredefinedRoles.Employee);
+                }
+            }
+            if (em_2_user == null)
+            {
+                var createEmployeeUser = await UserManager.CreateAsync(employee2, employee2_password);
+                if (createEmployeeUser.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(employee2, PredefinedRoles.Employee);
                 }
             }
         }

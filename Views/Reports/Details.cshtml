@@ -8,11 +8,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
-
+<h1>Report</h1>
+<a asp-action="Index">Back to List</a>
+<hr />
 <div>
-    <h4>Report</h4>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
@@ -60,22 +59,30 @@
 <div>
     @if (User.IsInRole(PredefinedRoles.Employee))
     {
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-        <a asp-action="Delete" asp-route-id="item.Id">Delete</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
     }
-    <a asp-action="Index">Back to List</a>
 </div>
 
 <h1 class="mt-5 mb-3">Replies</h1>
+<hr>
 @if (Model.Replies != null)
     @foreach (var s in Model.Replies)
     {
         <div class="border rounded my-2">
             <div class="p-3">@s.Content</div>
             <div class="border-top bg-light p-1">
-                <i>@s.Date</i>&nbsp;-&nbsp;
-                @(s.Author.LastName.Length==0?
-                s.Author.UserName:s.Author.LastName+" "+s.Author.FirstName)
+                @s.Date&nbsp;-&nbsp;
+                @if (s.Author.LastName != null && s.Author.FirstName != null)
+                {
+                    <i>@(s.Author.LastName + " " + s.Author.FirstName)</i>
+                }
+                else
+                {
+                    <i>@(s.Author.Email)</i>
+                }
+
+
             </div>
         </div>
     }

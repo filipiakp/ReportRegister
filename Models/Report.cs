@@ -13,6 +13,8 @@ namespace ReportRegister.Models
         public int Id { get; set; }
         [Required]
         public DateTime Date { get; set; }
+        [Required]
+        [MaxLength(80)]
         public string Title { get; set; }
         [MaxLength(4000)]
         [Required]

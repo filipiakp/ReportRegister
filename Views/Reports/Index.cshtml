@@ -4,21 +4,24 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Reports</h1>
 
 <p>
     @if (User.IsInRole(PredefinedRoles.User))
     {
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
     }
 </p>
-<table class="table">
+<table id="reports_table" class="table">
     <thead>
         <tr>
+            <th hidden>
+                Item
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
@@ -26,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -36,27 +39,46 @@
     <tbody>
         @foreach (var item in Model)
         {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @(item.Author.LastName + " " + item.Author.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
 
-        
-        
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            </tr>
-        
-        
+
         }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        @*Tabulator.prototype.extendModule("format", "formatters", {
+            linkRow: function (row, formatterParams) {
+                return "";
+            },
+        });*@
+        var table = new Tabulator("#reports_table", {
+            layout: "fitColumns",
+            rowClick: function (e, row) {
+                window.open("/Reports/Details/"+row.getData().item.trim(), "_self");
+            },
+        });
+        table.hideColumn("item");
+        if("@(User.IsInRole(PredefinedRoles.Employee))"=="False")
+        {
+            table.deleteColumn("author");
+        }
+        
+</script>
+}

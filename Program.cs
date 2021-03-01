@@ -20,8 +20,17 @@ namespace ReportRegister
 
             using (var scope = host.Services.CreateScope())
             {
-                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.Migrate();
+                try
+                {
+                    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                    db.Database.Migrate();
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine("Could not migrate to database. Check your connection and restart app. Database should be running.");
+                    Console.Error.WriteLine("Cause: " + e.Message);
+                }
+                
                 
             }
 

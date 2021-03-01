@@ -10,7 +10,7 @@ using ReportRegister.Areas.Identity.Data;
 namespace ReportRegister.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210228111939_InitialCreate")]
+    [Migration("20210301000547_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace ReportRegister.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("EmailNotifications")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
@@ -300,7 +303,9 @@ namespace ReportRegister.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
 
                     b.HasKey("Id");
 

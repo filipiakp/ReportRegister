@@ -16,7 +16,7 @@ namespace ReportRegister.Areas.Identity.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
-            optionsBuilder.UseSqlServer(System.IO.File.ReadAllText("connection-string.txt"));//file excluded in gitignore
+            optionsBuilder.UseSqlServer(System.IO.File.ReadAllText("connection-string.txt"));//file excluded in gitignore, contains only conn-str to db from dev pc
 
             return new AppDbContext(optionsBuilder.Options);
         }

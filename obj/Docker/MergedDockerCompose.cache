@@ -12,6 +12,11 @@ services:
       ASPNETCORE_URLS: https://+:443;http://+:80
       CUSTOMCONNSTR_DefaultConnection: Data Source=reportregister_db;Initial Catalog=ReportRegisterDB;Persist
         Security Info=True;User ID=sa;Password=zaq1@WSX;MultipleActiveResultSets=True;TrustServerCertificate=True
+      SMTP_DisplayName: reportregister
+      SMTP_Host: smtp.ethereal.email
+      SMTP_Mail: freddie.raynor@ethereal.email
+      SMTP_Password: yaaKhKeU4nBJVnGtru
+      SMTP_Port: 587
       employee1_email: g12pawelfilipiak@gmail.com
       employee1_password: zaq1@WSX
       employee2_email: example@mail.com

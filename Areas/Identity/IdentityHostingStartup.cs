@@ -16,13 +16,12 @@ namespace ReportRegister.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-
+                //Defined in Startup
                 //services.AddDbContext<AppDbContext>(options =>
                 //    options.UseSqlServer(
                 //        context.Configuration.GetConnectionString("DefaultConnection")
                 //    ));
-
-                //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = true)
                 //    .AddEntityFrameworkStores<AppDbContext>()
                 //    .AddDefaultUI();
             });

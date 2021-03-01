@@ -48,10 +48,12 @@ namespace ReportRegister.Areas.Identity.Pages.Account
         {
             [Required]
             [MaxLength(50)]
+            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
             [MaxLength(90)]
+            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
             [Required]
@@ -71,7 +73,7 @@ namespace ReportRegister.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -104,6 +106,7 @@ namespace ReportRegister.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
+                    
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
