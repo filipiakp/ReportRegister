@@ -7,7 +7,7 @@ docker-compose.yml
 =======
 connection-string.txt
 docker-compose.yml
-.vs/**
+.vs
 bin/**
 wwwroot/uploads/**
 *.cache
