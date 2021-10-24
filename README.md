@@ -103,7 +103,7 @@ o   Potwierdzenie rejestracji email (opcjonalnie)
 
 o   Powiadomienia email (opcjonalnie) 
 
-o   Hasła użytkowników powinny być odpowiednio zapisane na bazie przy pomocy algorytmów haszujących (opcjonalnie) 
+o   Hasła użytkowników powinny być odpowiednio zapisane w bazie przy pomocy algorytmów haszujących (opcjonalnie) 
 
 ·        Zgłoszenia 
 
