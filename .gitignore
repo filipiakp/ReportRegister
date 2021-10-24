@@ -14,3 +14,4 @@ wwwroot/uploads/**
 >>>>>>> Stashed changes
 *.cache
 obj/Docker/MergedDockerCompose.cache
+.vs/ReportRegister/DesignTimeBuild/.dtbcache.v2
