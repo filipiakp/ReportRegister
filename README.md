@@ -132,4 +132,7 @@ o   Pracownik powinien mieć możliwość podglądu oraz modyfikacji dowolnego z
 
 ·        Repozytorium Git 
 
-·        Użycie dependency injection  
+·        Użycie dependency injection 
+
+FEEDBACK
+„Mieszanie Razor Pagów z MVC nie jest najlepszym rozwiązaniem. Wykorzystane są podstawowe szablony do identity, lepiej jest tworzyć własne widoki i zarazem nie mieszać ze sobą tych dwóch rozwiązań. Brak wydzielenia warstw logiki, bazy danych, od komunikacji”
